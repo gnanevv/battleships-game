@@ -1,11 +1,13 @@
 import React from "react";
+import Explode from './explode.svg'
 // UI
 import * as CellUI from "./CellUI";
 
 export default ({ type, onCellClick, isStarted }) => {
   const renderCell = (type) => {
+    console.log(type)
     if (type === "X") {
-      return <CellUI.StyledHitCell>&#128500;</CellUI.StyledHitCell>;
+      return <CellUI.StyledHitCell><CellUI.StyledExplodeImage src={Explode} alt="explode" /></CellUI.StyledHitCell>;
     }
 
     if (type === "M") {
