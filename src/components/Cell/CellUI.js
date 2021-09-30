@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCell = styled.div`
+  position: 'relative';
   box-shadow: 1px 0 0 0 #fff, 0 1px 0 0 #fff, 1px 1px 0 0 #fff,
     1px 0 0 0 #fff inset, 0 1px 0 0 #fff inset;
   border-radius: 2px;
@@ -33,4 +34,8 @@ export const StyledMarkCell = styled(StyledCell)`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+`;
+
+export const StyledExplodeImage = styled.img`
+  width: 100%;
 `;
