@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MainPage from "./components/MainPage/MainPage";
-
+import './app.css'
 function App() {
   const StyledWrapper = styled.div`
     max-width: 100vw;

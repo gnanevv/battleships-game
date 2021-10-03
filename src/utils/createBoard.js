@@ -116,6 +116,7 @@ export default () => {
     const shipsToPlace = {
       battleship: { quantity: 1, length: 5 },
       destroyer: { quantity: 2, length: 4 },
+      submarine: {quantity: 3, length: 2 }
     };
 
     Object.entries(shipsToPlace).forEach(([name, ship]) => {
