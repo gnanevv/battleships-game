@@ -1,5 +1,4 @@
 import React from "react";
-
 //UI
 import * as ShipUI from "./ShipUI";
 
@@ -11,6 +10,7 @@ export default ({ length, orientation, coords }) => {
       col={col}
       length={length}
       orientation={orientation && true}
-    />
+    >
+    </ShipUI.StyledShip>
   );
 };
