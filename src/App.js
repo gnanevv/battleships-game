@@ -6,7 +6,7 @@ function App() {
   const StyledWrapper = styled.div`
     max-width: 100vw;
     height: 100vh;
-    background: #eaeaea;
+    background: #f8f8f8;
     margin: 0 auto;
     display: flex;
     justify-content: center;
