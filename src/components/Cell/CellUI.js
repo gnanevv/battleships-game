@@ -7,7 +7,7 @@ export const StyledCell = styled.div`
   border-radius: 2px;
   &:hover {
     border: ${(props) =>
-      props.isStarted ? (props.hover ? "2px solid red" : "none") : "none"};
+    props.isStarted ? (props.hover ? "2px #81c3ea" : "none") : "none"};
     cursor: ${(props) => (props.isStarted ? props.hover && "crosshair" : "")};
   }
 `;

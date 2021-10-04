@@ -11,8 +11,8 @@ export const StyledShip = styled.div.attrs(
   })
 )`
   position: absolute;
-  border: 2px solid #403771;
-  border-radius: 2px;
-  background-color: rgba(0, 0, 255, 0.05);
+  border-radius: 25px;
+  background-color: #d0d0de;
   pointer-events: none;
+  opacity: 0.6;
 `;
