@@ -5,10 +5,11 @@ export const StyledCell = styled.div`
   box-shadow: 1px 0 0 0 #fff, 0 1px 0 0 #fff, 1px 1px 0 0 #fff,
     1px 0 0 0 #fff inset, 0 1px 0 0 #fff inset;
   border-radius: 2px;
+  transition: 250ms;
   &:hover {
-    border: ${(props) =>
-    props.isStarted ? (props.hover ? "2px #81c3ea" : "none") : "none"};
-    cursor: ${(props) => (props.isStarted ? props.hover && "crosshair" : "")};
+    background: ${(props) =>
+    props.isStarted ? (props.hover ? "#81c3ea" : "none") : "none"};
+    cursor: ${(props) => (props.isStarted ? props.hover && "pointer" : "")};
   }
 `;
 
@@ -37,5 +38,6 @@ export const StyledMarkCell = styled(StyledCell)`
 `;
 
 export const StyledExplodeImage = styled.img`
+  z-index: 1;
   width: 100%;
 `;
