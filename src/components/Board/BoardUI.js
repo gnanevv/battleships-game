@@ -5,7 +5,6 @@ export const StyledBoardContainer = styled.div`
   width: 457px;
   height: 457px;
   grid-template: 45px 1fr/ 45px 1fr;
-  background-color: #dff3ff;
   border-radius: 4px;
 `;
 
