@@ -19,6 +19,9 @@ export const StyledHitCell = styled(StyledCell)`
   justify-content: center;
   align-items: center;
   font-size: 41px;
+  &:hover {
+    background: red;
+  }
 `;
 
 export const StyledMarkCell = styled(StyledCell)`
@@ -34,6 +37,9 @@ export const StyledMarkCell = styled(StyledCell)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+  &:hover {
+    background: #b8ddef;
   }
 `;
 

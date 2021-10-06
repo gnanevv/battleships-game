@@ -4,4 +4,5 @@ export const StyledBoard = styled.div`
   grid-template-columns: repeat(10, 41px);
   grid-template-rows: repeat(10, 41px);
   position: relative;
+  background-color: #dff3ff;
 `;
