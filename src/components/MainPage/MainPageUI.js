@@ -7,6 +7,14 @@ export const StyledGame = styled.div`
   justify-content: space-between;
 `;
 
+export const StyledParagraphContainer = styled.div`
+  display: table;
+  width: 100%;
+  border-radius: 5px;
+  background: ${(props) =>
+    props.isEnemyPlayer ? "#fe0157" : "#717c97"};
+`;
+
 export const StyledHeader = styled.header`
   grid-column: 1 / 4;
   display: flex;
@@ -33,9 +41,13 @@ export const InfoWrapper = styled.div`
   display: grid;
   grid-template-rows: 100px 100px 100px;
 `;
-export const StyledParagraph = styled.p`
+export const StyledParagraph = styled.h2`
   font-family: Cairo, sans-serif;
   font-size: 18px;
+  color: #fef2fc;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
 `;
 export const StyledCheaterButton = styled.button`
   position: relative;
