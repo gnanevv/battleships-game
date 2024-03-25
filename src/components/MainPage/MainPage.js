@@ -124,16 +124,20 @@ export default () => {
           />
         </MainPageUI.InfoWrapper>
         <div>
-          <MainPageUI.StyledParagraph>Player board</MainPageUI.StyledParagraph>
+         <MainPageUI.StyledParagraphContainer>
+            <MainPageUI.StyledParagraph>Your fleet</MainPageUI.StyledParagraph>
+          </MainPageUI.StyledParagraphContainer>
           <hr></hr>
           <Board>
             <PlayerBoard board={gameboard} ships={allShips.playerShips} />
           </Board>
         </div>
         <div>
-          <MainPageUI.StyledParagraph>
-            Computer board
-          </MainPageUI.StyledParagraph>
+          <MainPageUI.StyledParagraphContainer isEnemyPlayer>
+            <MainPageUI.StyledParagraph>
+              Enemy
+            </MainPageUI.StyledParagraph>
+          </MainPageUI.StyledParagraphContainer>
           <hr></hr>
           <Board>
             <EnemyBoard
