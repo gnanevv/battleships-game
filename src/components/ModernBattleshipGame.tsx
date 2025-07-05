@@ -232,20 +232,21 @@ export const ModernBattleshipGame: React.FC = () => {
   }, []);
 
   const getEnemyDisplayBoard = useCallback(() => {
-    if (!gameState.isCheatMode) {
-      return gameState.enemyBoard;
-    }
-
-    const combinedBoard = gameState.enemyBoard.map((row, rowIndex) =>
+    // Always create a proper board structure with water cells as base
+    const displayBoard = gameState.enemyBoard.map((row, rowIndex) =>
       row.map((cell, colIndex) => {
+        // If there's already a hit or miss, keep it
         if (cell === "X" || cell === "M") {
           return { hit: true, ship: cell === "X" };
         }
-        const hasShip = gameState.enemyFullBoard[rowIndex]?.[colIndex] === "S";
+        // For unattacked cells, show water (and ships if cheat mode is on)
+        const hasShip =
+          gameState.isCheatMode &&
+          gameState.enemyFullBoard[rowIndex]?.[colIndex] === "S";
         return { hit: false, ship: hasShip };
       })
     );
-    return combinedBoard;
+    return displayBoard;
   }, [gameState.enemyBoard, gameState.enemyFullBoard, gameState.isCheatMode]);
 
   return (

@@ -1,9 +1,25 @@
-import { createShip, getRandomInt, isInsideBoard } from ".";
+import createShip, { Ship, Coordinates } from "./createShip";
+import getRandomInt from "./getRandomInt";
+import isInsideBoard from "./isInsideBoard";
 import { BOARD_SIZE } from "../constants/boardSettings";
 
+type CellValue = "" | "S" | "X" | "M";
+type Board = CellValue[][];
+type AttackResult = "miss" | "hit" | "dead";
+
+interface GameBoard {
+  getGameboard(): Board;
+  getAttackboard(): Board;
+  getShips(): Ship[];
+  placeShip(ship: Ship): boolean;
+  placeShips(): void;
+  receiveAttack(row: number, col: number): AttackResult;
+  randomizeShips(): void;
+}
+
 // initialize board with empty arrays
-function initialBoard() {
-  const arr = [];
+function initialBoard(): Board {
+  const arr: Board = [];
   for (let i = 0; i < BOARD_SIZE; i++) {
     arr.push([]);
     for (let j = 0; j < BOARD_SIZE; j++) {
@@ -13,20 +29,23 @@ function initialBoard() {
   return arr;
 }
 
-export default () => {
-  let board = initialBoard();
-  let ships = [];
+const createBoard = (): GameBoard => {
+  let board: Board = initialBoard();
+  let ships: Ship[] = [];
 
-  const getGameboard = () => board;
-  const getAttackboard = () =>
+  const getGameboard = (): Board => board;
+  const getAttackboard = (): Board =>
     board.map((row) => row.map((cell) => (cell === "S" ? "" : cell)));
-  const getShips = () => ships;
+  const getShips = (): Ship[] => ships;
 
-  const getNeighbors = (ship, withShip = true) => {
+  const getNeighbors = (
+    ship: Ship,
+    withShip: boolean = true
+  ): Coordinates[] => {
     const { length = 1, orientation } = ship;
     const { row, col } = ship.getStartCoords();
 
-    const coordsArr = [];
+    const coordsArr: Coordinates[] = [];
 
     if (!orientation) {
       coordsArr.push({ row: row - 1, col: col - 1 });
@@ -65,13 +84,15 @@ export default () => {
     // return only inside board ships
     return coordsArr.filter(isInsideBoard);
   };
-  const markArea = (ship) => {
+
+  const markArea = (ship: Ship): void => {
     const coordsArr = getNeighbors(ship, false);
     coordsArr.forEach((coords) => {
       board[coords.row][coords.col] = "M";
     });
   };
-  const canPlaceShip = (ship) => {
+
+  const canPlaceShip = (ship: Ship): boolean => {
     const { length } = ship;
     const { row, col } = ship.getStartCoords();
 
@@ -102,7 +123,7 @@ export default () => {
     return !hasShip;
   };
 
-  const placeShip = (ship) => {
+  const placeShip = (ship: Ship): boolean => {
     if (canPlaceShip(ship)) {
       ship.coords.forEach((coords) => {
         board[coords.row][coords.col] = "S";
@@ -112,16 +133,17 @@ export default () => {
     }
     return false;
   };
-  const placeShips = () => {
+
+  const placeShips = (): void => {
     const shipsToPlace = {
       battleship: { quantity: 1, length: 4 },
       destroyer: { quantity: 2, length: 3 },
-      submarine: {quantity: 3, length: 2 },
-      frigate: {quantity: 4, length: 1 }
+      submarine: { quantity: 3, length: 2 },
+      frigate: { quantity: 4, length: 1 },
     };
 
-    Object.entries(shipsToPlace).forEach(([name, ship]) => {
-      let { quantity, length } = ship;
+    Object.entries(shipsToPlace).forEach(([name, shipType]) => {
+      let { quantity, length } = shipType;
 
       while (quantity > 0) {
         const newShip = createShip(
@@ -138,13 +160,13 @@ export default () => {
     });
   };
 
-  const randomizeShips = () => {
+  const randomizeShips = (): void => {
     board = initialBoard();
     ships = [];
     placeShips();
   };
 
-  const receiveAttack = (row, col) => {
+  const receiveAttack = (row: number, col: number): AttackResult => {
     if (board[row][col] !== "S") {
       board[row][col] = "M";
       return "miss";
@@ -163,7 +185,9 @@ export default () => {
       board[row][col] = "X";
       return "hit";
     }
+    return "miss";
   };
+
   return {
     getShips,
     getGameboard,
@@ -174,3 +198,5 @@ export default () => {
     randomizeShips,
   };
 };
+
+export default createBoard;
