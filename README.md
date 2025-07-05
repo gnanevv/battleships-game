@@ -1,4 +1,4 @@
-DEMO - https://battleships-game.vercel.app/
+DEMO - https://battleships-game-jet.vercel.app/
 
 Installation instructions
 
